@@ -1,0 +1,35 @@
+<?php
+/**
+ * Implements hook_form_alter().
+ */
+function proxima_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Check specifically for your node form ID
+//   dump($form);die;
+  if ($form_id == 'node_selection_form' || $form_id == 'node_selection_edit_form') {
+    
+    // Attach the JS library
+    $form['#attached']['library'][] = 'proxima/product_calculator';
+    // Optional: Make the Total field Read-only via PHP as well
+    // Note: Because it's an Inline Entity Form, deep targeting might be tricky in PHP,
+    // but the JS will handle the visual calculation.
+  }
+}
+
+function proxima_inline_entity_form_table_fields_alter(&$fields, $context) {
+  // 1. Check if the parent is your "Selection" content type
+  // 2. Check if the field is your "Product" field
+  if ($context['parent_bundle'] == 'selection' && $context['field_name'] == 'field_product') {
+    
+    $fields['field_total'] = [
+      'type' => 'field',
+      'label' => t('Total'),
+      'weight' => 10, // Adjust weight to move it to the end
+      'display_options' => [
+        'type' => 'number_decimal', // Optional: Ensure it formats as a number
+        'settings' => [
+           'scale' => 2,
+        ],
+      ],
+    ];
+  }
+}

@@ -1,0 +1,5 @@
+name: Proxima
+type: module
+description: 'Provides functionality for proxima.'
+package: Custom
+core_version_requirement: ^9.5 || ^10 || ^11

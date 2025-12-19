@@ -1,0 +1,213 @@
+{#
+/**
+ * @file
+ * Template for grouping products by category and room.
+ */
+#}
+
+{# Extract product data from items #}
+{% set products = [] %}
+{% for item in items %}
+  {% if item.content['#node'] %}
+    {% set node = item.content['#node'] %}
+    {% set products = products|merge([{
+      'node': node,
+      'id': node.id(),
+      'title': node.label(),
+      'category': node.field_category.0.entity ? node.field_category.0.entity.label : 'Uncategorized',
+      'room': node.field_room.0.value ? node.field_room.0.value : 'Common',
+      'mrp': node.field_mrp.0.value ? node.field_mrp.0.value|number_format(2) : '0.00',
+      'quantity': node.field_quantity.0.value ? node.field_quantity.0.value : '1',
+      'discount_type': node.field_discount_type.0.entity ? node.field_discount_type.0.entity.label : '',
+      'discount_value': node.field_discount_value.0.value ? node.field_discount_value.0.value : '0',
+      'price_per_piece': node.field_price_per_piece.0.value ? node.field_price_per_piece.0.value|number_format(2) : '0.00',
+      'total': node.field_total.0.value ? node.field_total.0.value|number_format(2) : '0.00',
+      'code': node.field_code.0.value ? node.field_code.0.value : '',
+      'description': node.field_description.0.value ? node.field_description.0.value : '',
+      'finish': node.field_finish.0.value ? node.field_finish.0.value : '',
+      'size': node.field_size.0.value ? node.field_size.0.value : ''
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+{# Calculate grand totals #}
+{% set category_totals = {} %}
+{% set room_totals = {} %}
+{% set grand_total = 0 %}
+
+{% for product in products %}
+  {% set category = product.category %}
+  {% set room = product.room %}
+  {% set product_total = product.total|replace({',': ''})|number_format(2, '.', '') %}
+  
+  {# Category totals #}
+  {% if not category_totals[category] %}
+    {% set category_totals = category_totals|merge({(category): 0}) %}
+  {% endif %}
+  {% set current_category_total = category_totals[category] + product_total %}
+  {% set category_totals = category_totals|merge({(category): current_category_total}) %}
+  
+  {# Room totals #}
+  {% if not room_totals[room] %}
+    {% set room_totals = room_totals|merge({(room): 0}) %}
+  {% endif %}
+  {% set current_room_total = room_totals[room] + product_total %}
+  {% set room_totals = room_totals|merge({(room): current_room_total}) %}
+  
+  {# Grand total #}
+  {% set grand_total = grand_total + product_total %}
+{% endfor %}
+
+{# Group products by category and room #}
+{% set grouped_products = {} %}
+{% for product in products %}
+  {% set category = product.category %}
+  {% set room = product.room %}
+  
+  {% if not grouped_products[category] %}
+    {% set grouped_products = grouped_products|merge({(category): {
+      'rooms': {},
+      'total': category_totals[category]|default(0)
+    }}) %}
+  {% endif %}
+  
+  {% if not grouped_products[category].rooms[room] %}
+    {% set grouped_products = grouped_products|merge({
+      (category): grouped_products[category]|merge({
+        'rooms': grouped_products[category].rooms|merge({
+          (room): {
+            'products': [],
+            'total': room_totals[room]|default(0)
+          }
+        })
+      })
+    }) %}
+  {% endif %}
+  
+  {% set current_room = grouped_products[category].rooms[room] %}
+  {% set current_products = current_room.products|merge([product]) %}
+  {% set grouped_products = grouped_products|merge({
+    (category): grouped_products[category]|merge({
+      'rooms': grouped_products[category].rooms|merge({
+        (room): current_room|merge({'products': current_products})
+      })
+    })
+  }) %}
+{% endfor %}
+
+{# Render grouped products #}
+<div class="products-by-category">
+  <h2><i class="icon-list color-primary"></i> Products by Category</h2>
+  
+  {% for category, category_data in grouped_products %}
+    <div class="category-group">
+      <h3 class="category-title">
+        <i class="icon-folder color-primary"></i> {{ category }}
+        <span class="category-total">({{ category_data.total|number_format(2) }})</span>
+      </h3>
+      
+      {% set category_item_count = 0 %}
+      {% for room, room_data in category_data.rooms %}
+        {% set category_item_count = category_item_count + room_data.products|length %}
+      {% endfor %}
+      
+      <p class="category-summary">
+        <i class="icon-package"></i> <strong>{{ category_item_count }} items</strong>
+        <span style="margin-left: 15px; color: #27ae60;">
+          <i class="icon-dollar-sign"></i> Category Total: {{ category_data.total|number_format(2) }}
+        </span>
+      </p>
+      
+      {% for room, room_data in category_data.rooms %}
+        <div class="room-group">
+          <h4 class="room-title">
+            <i class="icon-home"></i> Room: {{ room }}
+            <span class="room-total">({{ room_data.total|number_format(2) }})</span>
+          </h4>
+        </div>
+        
+        <div class="products-table-container">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Code</th>
+                <th>Size/Finish</th>
+                <th>MRP</th>
+                <th>Discount</th>
+                <th>Qty</th>
+                <th>Price/Piece</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in room_data.products %}
+                <tr class="product-item">
+                  <td>
+                    <strong>{{ product.title }}</strong>
+                    {% if product.description %}
+                      <div class="product-description">{{ product.description }}</div>
+                    {% endif %}
+                  </td>
+                  <td>{{ product.code }}</td>
+                  <td>
+                    {% if product.size %}
+                      <span class="product-size">{{ product.size }}</span><br>
+                    {% endif %}
+                    <span class="product-finish">{{ product.finish }}</span>
+                  </td>
+                  <td class="price">{{ product.mrp }}</td>
+                  <td class="discount {% if product.discount_type == 'Percent (%)' %}percent{% else %}amount{% endif %}">
+                    {% if product.discount_type == 'Percent (%)' %}
+                      ({{ product.discount_value }}%)
+                    {% else %}
+                      ({{ product.discount_value }})
+                    {% endif %}
+                  </td>
+                  <td>{{ product.quantity }}</td>
+                  <td class="price">{{ product.price_per_piece }}</td>
+                  <td class="price total">{{ product.total }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr class="room-total-row">
+                <td colspan="7" style="text-align: right; font-weight: 600;">Room Total:</td>
+                <td class="price total" style="font-size: 16px;">{{ room_data.total|number_format(2) }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      {% endfor %}
+    </div>
+    
+    {% if not loop.last %}
+      <hr class="category-separator">
+    {% endif %}
+  {% endfor %}
+  
+  {# Grand Total Summary #}
+  <div class="products-total-summary">
+    <h3><i class="icon-dollar-sign"></i> Order Summary</h3>
+    
+    {% for category, category_data in grouped_products %}
+      <div class="total-summary-item">
+        <span class="total-label">{{ category }} Total:</span>
+        <span class="price total">{{ category_data.total|number_format(2) }}</span>
+      </div>
+    {% endfor %}
+    
+    <div class="total-summary-item grand-total">
+      <span class="total-label"><i class="icon-dollar-sign"></i> GRAND TOTAL:</span>
+      <span class="total-value">{{ grand_total|number_format(2) }}</span>
+    </div>
+  </div>
+</div>
+
+{# Hide the default rendering #}
+<style>
+.field--name-field-product .node-taxonomy-container,
+.field--name-field-product .taxonomy-terms {
+  display: none;
+}
+</style>

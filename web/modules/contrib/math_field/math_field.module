@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Math Field Formatter Drupal 8 Module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function math_field_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.math_field') {
+    $readme_file = file_exists(__DIR__ . '/README.md') ? __DIR__ . '/README.md' : __DIR__ . '/README.txt';
+    if (!file_exists($readme_file)) {
+      return NULL;
+    }
+    $text = file_get_contents($readme_file);
+    if ($text && !\Drupal::moduleHandler()->moduleExists('markdown')) {
+      return '<pre>' . $text . '</pre>';
+    }
+    else {
+      // Use the Markdown filter to render the README.
+      $filter_manager = \Drupal::service('plugin.manager.filter');
+      $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+      $config = ['settings' => $settings];
+      $filter = $filter_manager->createInstance('markdown', $config);
+      return $filter->process($text, 'en');
+    }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function math_field_theme() {
+  return [
+    'math_field' => [
+      'variables' => [
+        'expression' => '',
+        'result' => '',
+      ],
+      'template' => 'math-field',
+    ],
+  ];
+}

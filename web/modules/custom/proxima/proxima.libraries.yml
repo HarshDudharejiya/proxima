@@ -1,0 +1,8 @@
+product_calculator:
+  version: 1.x
+  js:
+    js/product-calculator.js: {}
+  dependencies:
+    - core/drupal
+    - core/once   # <--- THIS IS REQUIRED for Drupal 10/11
+    - core/jquery

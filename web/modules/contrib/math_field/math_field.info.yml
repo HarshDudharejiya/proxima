@@ -1,0 +1,10 @@
+name: 'Math Field'
+type: module
+description: 'Able compute simple mathematical operations using the most basic operations (+, -, *, /)'
+core_version_requirement: ^9 || ^10 || ^11
+package: 'custom'
+
+# Information added by Drupal.org packaging script on 2025-06-17
+version: '2.0.4'
+project: 'math_field'
+datestamp: 1750202236
