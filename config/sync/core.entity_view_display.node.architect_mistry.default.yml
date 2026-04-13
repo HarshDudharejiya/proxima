@@ -1,0 +1,37 @@
+uuid: cef04165-f21d-4b9e-a3bc-f11b38ba3ab4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.architect_mistry.field_architect_mistry
+    - field.field.node.architect_mistry.field_architect_mistry_location
+    - node.type.architect_mistry
+  module:
+    - user
+id: node.architect_mistry.default
+targetEntityType: node
+bundle: architect_mistry
+mode: default
+content:
+  field_architect_mistry:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_architect_mistry_location:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

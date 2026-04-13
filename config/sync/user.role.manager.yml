@@ -1,0 +1,51 @@
+uuid: f384aa54-6b75-49d5-a0e7-cb7d7af643dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.architect_mistry
+    - node.type.article
+    - node.type.client
+    - node.type.page
+    - node.type.product
+    - node.type.selection
+  module:
+    - node
+    - system
+id: manager
+label: Manager
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'create architect_mistry content'
+  - 'create article content'
+  - 'create client content'
+  - 'create page content'
+  - 'create product content'
+  - 'create selection content'
+  - 'delete any architect_mistry content'
+  - 'delete any article content'
+  - 'delete any client content'
+  - 'delete any page content'
+  - 'delete any product content'
+  - 'delete any selection content'
+  - 'delete own architect_mistry content'
+  - 'delete own article content'
+  - 'delete own client content'
+  - 'delete own page content'
+  - 'delete own product content'
+  - 'delete own selection content'
+  - 'edit any architect_mistry content'
+  - 'edit any article content'
+  - 'edit any client content'
+  - 'edit any page content'
+  - 'edit any product content'
+  - 'edit any selection content'
+  - 'edit own architect_mistry content'
+  - 'edit own article content'
+  - 'edit own client content'
+  - 'edit own page content'
+  - 'edit own product content'
+  - 'edit own selection content'
+  - 'view own unpublished content'

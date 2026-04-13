@@ -1,0 +1,18 @@
+uuid: 808d6fc0-bcb9-4d30-bd5f-27b5215497cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Selection
+type: selection
+description: null
+help: null
+new_revision: true
+preview_mode: 0
+display_submitted: true

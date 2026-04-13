@@ -1,0 +1,37 @@
+uuid: 74547a61-a8bc-4ff1-962c-94fa6003420c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.client.field_client_address
+    - field.field.node.client.field_client_phone
+    - node.type.client
+  module:
+    - user
+id: node.client.default
+targetEntityType: node
+bundle: client
+mode: default
+content:
+  field_client_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_client_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

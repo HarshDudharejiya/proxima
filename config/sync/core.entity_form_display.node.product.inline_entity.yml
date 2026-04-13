@@ -1,0 +1,143 @@
+uuid: bde1ac70-0aa0-4ef4-b0d9-480a392fe79e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.inline_entity
+    - field.field.node.product.field_category
+    - field.field.node.product.field_discount_type
+    - field.field.node.product.field_discount_value
+    - field.field.node.product.field_mrp
+    - field.field.node.product.field_price_per_piece
+    - field.field.node.product.field_product_code
+    - field.field.node.product.field_quantity
+    - field.field.node.product.field_room
+    - field.field.node.product.field_size_finish
+    - field.field.node.product.field_total
+    - node.type.product
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_column_flex:
+      children:
+        - title
+        - field_category
+        - field_room
+        - field_product_code
+        - field_size_finish
+        - field_mrp
+        - field_quantity
+        - field_discount_type
+        - field_discount_value
+        - field_price_per_piece
+        - field_total
+      label: column-flex
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: ' column-flex'
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+id: node.product.inline_entity
+targetEntityType: node
+bundle: product
+mode: inline_entity
+content:
+  field_category:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_discount_type:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_discount_value:
+    type: number
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_mrp:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_price_per_piece:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_product_code:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_quantity:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_room:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_size_finish:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_total:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

@@ -1,0 +1,19 @@
+uuid: 6bf3b8e1-bad2-482b-9dc4-388a8db9170b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_architect_mistry_location
+    - node.type.architect_mistry
+id: node.architect_mistry.field_architect_mistry_location
+field_name: field_architect_mistry_location
+entity_type: node
+bundle: architect_mistry
+label: 'Architect/Mistry Location'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

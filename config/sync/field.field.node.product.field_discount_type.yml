@@ -1,0 +1,33 @@
+uuid: 28780ea8-c209-4d58-b356-849fc03d4474
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_discount_type
+    - node.type.product
+    - taxonomy.vocabulary.discount_type
+  content:
+    - 'taxonomy_term:discount_type:cad65fc5-3837-40e7-a282-11d488ad8328'
+id: node.product.field_discount_type
+field_name: field_discount_type
+entity_type: node
+bundle: product
+label: 'Discount Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: cad65fc5-3837-40e7-a282-11d488ad8328
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      discount_type: discount_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

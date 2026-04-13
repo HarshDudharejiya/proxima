@@ -1,0 +1,23 @@
+uuid: b8abd2ee-2196-4fc5-b972-cc3931359a31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_grand_total
+    - node.type.selection
+id: node.selection.field_grand_total
+field_name: field_grand_total
+entity_type: node
+bundle: selection
+label: 'Grand Total'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

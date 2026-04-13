@@ -1,0 +1,23 @@
+uuid: ab28a6be-3d24-4d73-9faa-80818c218730
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_discount_value
+    - node.type.product
+id: node.product.field_discount_value
+field_name: field_discount_value
+entity_type: node
+bundle: product
+label: 'Discount Value'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

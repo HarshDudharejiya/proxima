@@ -1,0 +1,23 @@
+uuid: bd464c0d-c5b2-430f-b7f7-ac3d471cf385
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_price_per_piece
+    - node.type.product
+id: node.product.field_price_per_piece
+field_name: field_price_per_piece
+entity_type: node
+bundle: product
+label: 'Price per piece'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

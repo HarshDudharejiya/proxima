@@ -1,0 +1,20 @@
+uuid: 2d8bcc6e-6f82-4d1c-a483-351a17723c96
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_discount_value
+field_name: field_discount_value
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

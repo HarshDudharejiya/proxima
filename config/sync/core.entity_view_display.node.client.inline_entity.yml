@@ -1,0 +1,41 @@
+uuid: 0134f79f-ee3b-4908-86c2-df37f83a531d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.inline_entity
+    - field.field.node.client.field_client_address
+    - field.field.node.client.field_client_phone
+    - node.type.client
+  module:
+    - user
+id: node.client.inline_entity
+targetEntityType: node
+bundle: client
+mode: inline_entity
+content:
+  field_client_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_client_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

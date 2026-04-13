@@ -1,0 +1,19 @@
+uuid: 777b6c98-66d8-449f-9958-f3f9a50783a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_size_finish
+    - node.type.product
+id: node.product.field_size_finish
+field_name: field_size_finish
+entity_type: node
+bundle: product
+label: Size/Finish
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

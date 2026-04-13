@@ -1,0 +1,18 @@
+uuid: 28e4972a-1aad-4cab-b8fb-9330c0ae8f0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.architect_mistry
+id: node.architect_mistry.title
+field_name: title
+entity_type: node
+bundle: architect_mistry
+label: 'Architect/Mistry Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: 9b94c853-7912-4bd2-82a5-4811485da9ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_attend_by
+    - node.type.selection
+    - taxonomy.vocabulary.attend_by
+id: node.selection.field_attend_by
+field_name: field_attend_by
+entity_type: node
+bundle: selection
+label: 'Attend By'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      attend_by: attend_by
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

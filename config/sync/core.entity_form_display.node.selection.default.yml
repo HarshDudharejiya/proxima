@@ -1,0 +1,127 @@
+uuid: c098fa3f-e802-492b-86c3-eec2e7bd6cee
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.inline_entity
+    - field.field.node.selection.field_architect_mistry_informati
+    - field.field.node.selection.field_attend_by
+    - field.field.node.selection.field_client_information
+    - field.field.node.selection.field_grand_total
+    - field.field.node.selection.field_product
+    - node.type.selection
+  module:
+    - inline_entity_form
+    - path
+id: node.selection.default
+targetEntityType: node
+bundle: selection
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_architect_mistry_informati:
+    type: inline_entity_form_complex
+    weight: 4
+    region: content
+    settings:
+      form_mode: inline_entity
+      override_labels: true
+      label_singular: Architect/Mistry
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+  field_attend_by:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_client_information:
+    type: inline_entity_form_complex
+    weight: 3
+    region: content
+    settings:
+      form_mode: inline_entity
+      override_labels: true
+      label_singular: Client
+      label_plural: Clients
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+  field_grand_total:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_product:
+    type: inline_entity_form_complex
+    weight: 1
+    region: content
+    settings:
+      form_mode: inline_entity
+      override_labels: true
+      label_singular: Product
+      label_plural: Products
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 9
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 6
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

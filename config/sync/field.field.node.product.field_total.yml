@@ -1,0 +1,23 @@
+uuid: 05f8030b-76b1-4978-b1a5-f7d6f74f6455
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total
+    - node.type.product
+id: node.product.field_total
+field_name: field_total
+entity_type: node
+bundle: product
+label: Total
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

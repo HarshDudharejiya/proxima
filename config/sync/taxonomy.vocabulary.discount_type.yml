@@ -1,0 +1,9 @@
+uuid: 08992807-9b20-442e-a1d0-289ac3c1b4e9
+langcode: en
+status: true
+dependencies: {  }
+name: 'Discount Type'
+vid: discount_type
+description: null
+weight: 0
+new_revision: false

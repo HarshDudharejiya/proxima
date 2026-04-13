@@ -1,0 +1,23 @@
+uuid: 3f1c2788-0aba-438c-a859-face19a1f29d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mrp
+    - node.type.product
+id: node.product.field_mrp
+field_name: field_mrp
+entity_type: node
+bundle: product
+label: MRP
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

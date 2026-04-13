@@ -1,0 +1,72 @@
+uuid: 2283e714-8f7b-406d-bbce-09bee2291e16
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.inline_entity
+    - field.field.node.client.field_client_address
+    - field.field.node.client.field_client_phone
+    - node.type.client
+  module:
+    - field_group
+third_party_settings:
+  field_group:
+    group_column_flex:
+      children:
+        - title
+        - field_client_phone
+        - field_client_address
+      label: column-flex
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: column-flex
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        required_fields: true
+id: node.client.inline_entity
+targetEntityType: node
+bundle: client
+mode: inline_entity
+content:
+  field_client_address:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_client_phone:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

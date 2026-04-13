@@ -1,0 +1,19 @@
+uuid: 734aa66a-10ed-4b51-8d86-ff7e0778e92d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_client_phone
+    - node.type.client
+id: node.client.field_client_phone
+field_name: field_client_phone
+entity_type: node
+bundle: client
+label: 'Client Phone'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

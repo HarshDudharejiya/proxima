@@ -1,0 +1,19 @@
+uuid: aa1d2668-7e92-4eb6-ac82-4cda099cd236
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_architect_mistry
+    - node.type.architect_mistry
+id: node.architect_mistry.field_architect_mistry
+field_name: field_architect_mistry
+entity_type: node
+bundle: architect_mistry
+label: 'Architect/Mistry Phone'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: f372e16c-d00a-47bb-bf8f-f2147ebd142e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_architect_mistry_informati
+    - node.type.architect_mistry
+    - node.type.selection
+id: node.selection.field_architect_mistry_informati
+field_name: field_architect_mistry_informati
+entity_type: node
+bundle: selection
+label: 'Architect/Mistry Information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      architect_mistry: architect_mistry
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

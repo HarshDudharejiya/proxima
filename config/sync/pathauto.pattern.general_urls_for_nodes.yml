@@ -1,0 +1,27 @@
+uuid: 46427037-a534-410f-a2a1-315666fabbd8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: general_urls_for_nodes
+label: 'General URLS For Nodes'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  af9e0133-908e-4c27-a91a-f896d240ddb9:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: af9e0133-908e-4c27-a91a-f896d240ddb9
+    context_mapping:
+      node: node
+    bundles:
+      architect_mistry: architect_mistry
+      article: article
+      client: client
+      page: page
+      product: product
+      selection: selection
+selection_logic: and
+weight: -5
+relationships: {  }

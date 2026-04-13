@@ -1,0 +1,23 @@
+uuid: cfb17ac1-e4a0-4ad9-9de6-e3f54f67907e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_quantity
+    - node.type.product
+id: node.product.field_quantity
+field_name: field_quantity
+entity_type: node
+bundle: product
+label: Quantity
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

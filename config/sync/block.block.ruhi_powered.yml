@@ -1,0 +1,22 @@
+uuid: 9b6301c2-398d-43e8-ab10-4123ccb73245
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ruhi
+_core:
+  default_config_hash: jlpOhP_Tu6SpGCUa8kX68orsno4ywq_x5zFHj6M1QVQ
+id: ruhi_powered
+theme: ruhi
+region: hidden
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }
