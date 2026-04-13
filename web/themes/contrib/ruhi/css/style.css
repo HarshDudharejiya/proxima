@@ -1798,3 +1798,155 @@ ul.page-tabs {
 .field--name-title {
   flex: none !important;
 }
+
+
+/* =========================================
+   COMMISSION RECORD VIEW STYLING
+   ========================================= */
+
+/* 2. Styling for Paragraph Collections (Payments & Commissions) */
+.field--name-field-payments,
+.field--name-field-commissions {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  margin-top: 10px;
+  border-left: none; /* Override default field border */
+}
+
+/* Section Titles */
+.field--name-field-payments > .field__label,
+.field--name-field-commissions > .field__label {
+  font-size: 20px;
+  color: var(--bold-color);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-family: var(--heading-font);
+  text-transform: none;
+}
+
+/* Individual Entry Rows */
+.paragraph--type--payment-entry,
+.paragraph--type--commission-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 15px;
+  border-bottom: 1px dashed #ddd;
+  background: #fdfdfd;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.paragraph--type--payment-entry:hover,
+.paragraph--type--commission-entry:hover {
+  background: #f4f6f8;
+}
+
+.paragraph--type--payment-entry:last-child,
+.paragraph--type--commission-entry:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Clean up inner fields inside paragraphs */
+.paragraph .field {
+  margin-bottom: 0;
+  padding: 0;
+  border-left: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph .field__label {
+  font-size: 11px;
+  color: #7f8c8d;
+  margin-bottom: 2px;
+}
+
+.paragraph .field-item {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Highlight the money amounts inside the entries */
+.field--name-field-payment-amount .field-item,
+.field--name-field-commission-amount .field-item {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 16px;
+  color: #27ae60; /* Green color from your existing total styles */
+}
+
+
+/* 3. Summary Fields (Advance, Percentage, Total) */
+.field--name-field-advance-amount,
+.field--name-field-commission-percentage,
+.field--name-field-total-commission,
+.field--name-field-total-payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid var(--secondary);
+}
+
+.field--name-field-advance-amount .field__label,
+.field--name-field-commission-percentage .field__label,
+.field--name-field-total-commission .field__label {
+  margin-bottom: 0;
+  font-size: 16px;
+  color: var(--bold-color);
+}
+
+.field--name-field-advance-amount .field-item,
+.field--name-field-commission-percentage .field-item {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bold-color);
+}
+
+/* Add a percentage sign via pseudo-element */
+.field--name-field-commission-percentage .field-item::after {
+  content: "%";
+}
+
+/* Add currency symbol (Assuming INR based on context, change if needed) */
+.field--name-field-advance-amount .field-item::before,
+.field--name-field-payment-amount .field-item::before,
+.field--name-field-commission-amount .field-item::before,
+.field--name-field-total-commission .field-item::before,
+.field--name-field-total-payment .field-item::before {
+  content: "₹ ";
+}
+
+/* Grand Total Special Styling */
+.field--name-field-total-commission, .field--name-field-total-payment {
+  background: linear-gradient(135deg, var(--primary) 0%, #bd4b0a 100%);
+  color: white;
+  border: none;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(226, 91, 14, 0.3);
+}
+
+.field--name-field-total-commission .field__label, .field--name-field-total-payment .field__label {
+  color: white;
+  font-size: 18px;
+}
+
+.field--name-field-total-commission .field-item, .field--name-field-total-payment .field-item {
+  color: white;
+  font-size: 24px;
+  font-family: 'Courier New', Consolas, monospace;
+  font-weight: 700;
+}
