@@ -1,0 +1,20 @@
+uuid: 787b5a66-d3db-498c-842e-ca7773ae96fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_commission_percentage
+field_name: field_commission_percentage
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

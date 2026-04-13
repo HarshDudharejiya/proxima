@@ -1,0 +1,10 @@
+uuid: c5eaf3d2-e7d4-4a43-994e-2e59c043faa9
+langcode: en
+status: true
+dependencies: {  }
+id: commission_entry
+label: 'Commission Entry'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

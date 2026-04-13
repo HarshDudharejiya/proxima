@@ -1,0 +1,24 @@
+uuid: c78a667d-745f-44ab-88d2-ea48119a9a72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date
+    - paragraphs.paragraphs_type.payment_entry
+  module:
+    - datetime
+id: paragraph.payment_entry.field_date
+field_name: field_date
+entity_type: paragraph
+bundle: payment_entry
+label: Date
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

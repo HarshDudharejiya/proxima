@@ -1,0 +1,23 @@
+uuid: 460dc485-2bd9-40de-b9cb-6f6732ff360d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_payment
+    - node.type.commission_record
+id: node.commission_record.field_total_payment
+field_name: field_total_payment
+entity_type: node
+bundle: commission_record
+label: 'Total Payment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

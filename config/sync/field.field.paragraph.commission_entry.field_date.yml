@@ -1,0 +1,24 @@
+uuid: 0c71c48e-0f8d-4f0d-85ef-50a2f79df948
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date
+    - paragraphs.paragraphs_type.commission_entry
+  module:
+    - datetime
+id: paragraph.commission_entry.field_date
+field_name: field_date
+entity_type: paragraph
+bundle: commission_entry
+label: Date
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

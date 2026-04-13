@@ -1,23 +1,22 @@
-uuid: 46427037-a534-410f-a2a1-315666fabbd8
+uuid: 11e0a6f9-1915-4ed3-ae0b-0c974d428589
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: general_urls_for_nodes
-label: 'General URLS For Nodes'
+id: commission_record
+label: 'Commission Record'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: 'commission/[node:title]'
 selection_criteria:
-  bca7809a-51f6-470e-9329-e37f67301bfe:
+  d02b5033-55c6-4406-ae16-073ab2384413:
     id: 'entity_bundle:node'
     negate: false
-    uuid: bca7809a-51f6-470e-9329-e37f67301bfe
+    uuid: d02b5033-55c6-4406-ae16-073ab2384413
     context_mapping:
       node: node
     bundles:
-      client: client
-      page: page
+      commission_record: commission_record
 selection_logic: and
 weight: -5
 relationships: {  }

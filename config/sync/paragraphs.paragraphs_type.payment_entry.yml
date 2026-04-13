@@ -1,0 +1,10 @@
+uuid: dea64a0e-cbf3-4f97-852d-e2c3b2de7c81
+langcode: en
+status: true
+dependencies: {  }
+id: payment_entry
+label: 'Payment Entry'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,49 +1,31 @@
-uuid: 53b9cd57-d201-49a2-867b-f20a8836a31b
+uuid: b2a7bdd7-2e6e-4ee5-9e33-c4e536660b64
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.selection.field_architect_mistry_informati
-    - field.field.node.selection.field_attend_by
-    - field.field.node.selection.field_client_information
-    - field.field.node.selection.field_grand_total
-    - field.field.node.selection.field_product
-    - node.type.selection
+    - field.field.node.commission_record.field_advance_amount
+    - field.field.node.commission_record.field_architect_mistry_informati
+    - field.field.node.commission_record.field_client_information
+    - field.field.node.commission_record.field_commission_percentage
+    - field.field.node.commission_record.field_commissions
+    - field.field.node.commission_record.field_payments
+    - field.field.node.commission_record.field_total_commission
+    - field.field.node.commission_record.field_total_payment
+    - node.type.commission_record
   module:
-    - entity_print
+    - entity_reference_revisions
     - field_group
     - user
 third_party_settings:
   field_group:
-    group_client_and_attendy:
-      children:
-        - field_client_information
-        - field_attend_by
-      label: 'Client and attendy'
-      parent_name: group_client_and_architecture
-      region: content
-      weight: 2
-      format_type: html_element
-      format_settings:
-        classes: col-1
-        show_empty_fields: false
-        id: ''
-        label_as_html: false
-        element: div
-        show_label: false
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
     group_client_and_architecture:
       children:
-        - group_client_and_attendy
-        - group_architect_mistry
+        - group_client
+        - group_architect_mistry_informat
       label: 'Client and architecture'
       parent_name: ''
       region: content
-      weight: 1
+      weight: 0
       format_type: html_element
       format_settings:
         classes: container-flex
@@ -57,13 +39,33 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-    group_architect_mistry:
+    group_client:
       children:
-        - field_architect_mistry_informati
-      label: Architect/Mistry
+        - field_client_information
+      label: Client
       parent_name: group_client_and_architecture
       region: content
-      weight: 4
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: col-1
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_architect_mistry_informat:
+      children:
+        - field_architect_mistry_informati
+      label: ' Architect/Mistry Information'
+      parent_name: group_client_and_architecture
+      region: content
+      weight: 2
       format_type: html_element
       format_settings:
         classes: col-2
@@ -77,34 +79,25 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-  entity_print:
-    pdf_label: 'View PDF'
-id: node.selection.default
+id: node.commission_record.default
 targetEntityType: node
-bundle: selection
+bundle: commission_record
 mode: default
 content:
-  computed_grand:
-    type: entity_reference_label
+  field_advance_amount:
+    type: number_integer
     label: above
     settings:
-      link: true
+      thousand_separator: ''
+      prefix_suffix: true
     third_party_settings: {  }
-    weight: 106
+    weight: 7
     region: content
   field_architect_mistry_informati:
     type: entity_reference_entity_view
     label: above
     settings:
       view_mode: inline_entity
-      link: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_attend_by:
-    type: entity_reference_label
-    label: above
-    settings:
       link: false
     third_party_settings: {  }
     weight: 3
@@ -118,30 +111,55 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_grand_total:
-    type: number_decimal
+  field_commission_percentage:
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
-      decimal_separator: .
-      scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 3
+    weight: 8
     region: content
-  field_product:
-    type: entity_reference_entity_view
+  field_commissions:
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
-      view_mode: inline_entity
-      link: false
+      view_mode: default
+      link: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 9
+    region: content
+  field_payments:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_total_commission:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_total_payment:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 6
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 0
+    weight: 4
     region: content
 hidden:
   entity_print_view_epub: true

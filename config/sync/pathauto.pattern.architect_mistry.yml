@@ -1,23 +1,22 @@
-uuid: 46427037-a534-410f-a2a1-315666fabbd8
+uuid: 0062fa17-459e-4cfb-93a4-e6b6e3d9d9bc
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: general_urls_for_nodes
-label: 'General URLS For Nodes'
+id: architect_mistry
+label: Architect/Mistry
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: 'agent/[node:title]'
 selection_criteria:
-  bca7809a-51f6-470e-9329-e37f67301bfe:
+  415e3bab-f447-4be6-b8ce-49201986b362:
     id: 'entity_bundle:node'
     negate: false
-    uuid: bca7809a-51f6-470e-9329-e37f67301bfe
+    uuid: 415e3bab-f447-4be6-b8ce-49201986b362
     context_mapping:
       node: node
     bundles:
-      client: client
-      page: page
+      architect_mistry: architect_mistry
 selection_logic: and
 weight: -5
 relationships: {  }

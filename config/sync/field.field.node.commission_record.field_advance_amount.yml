@@ -1,0 +1,23 @@
+uuid: 71e9e6a8-1943-4082-a0c5-c712e42bc290
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_advance_amount
+    - node.type.commission_record
+id: node.commission_record.field_advance_amount
+field_name: field_advance_amount
+entity_type: node
+bundle: commission_record
+label: 'Advance Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

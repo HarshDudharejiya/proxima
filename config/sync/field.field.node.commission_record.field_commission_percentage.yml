@@ -1,0 +1,23 @@
+uuid: 8f9b2397-1f60-47c8-8e6d-3f8d49705019
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_commission_percentage
+    - node.type.commission_record
+id: node.commission_record.field_commission_percentage
+field_name: field_commission_percentage
+entity_type: node
+bundle: commission_record
+label: 'Commission Percentage'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

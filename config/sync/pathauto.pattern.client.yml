@@ -1,0 +1,14 @@
+uuid: 6aee6256-b352-4990-8cf3-71238574aa90
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: client
+label: Client
+type: 'canonical_entities:node'
+pattern: 'client/[node:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

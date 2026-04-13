@@ -1,0 +1,23 @@
+uuid: 9dd37bce-aabd-4cae-b1d4-a9de94961299
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_commission_amount
+    - paragraphs.paragraphs_type.commission_entry
+id: paragraph.commission_entry.field_commission_amount
+field_name: field_commission_amount
+entity_type: paragraph
+bundle: commission_entry
+label: 'Commission Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

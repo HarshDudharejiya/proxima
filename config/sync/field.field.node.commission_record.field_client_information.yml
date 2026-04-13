@@ -1,0 +1,29 @@
+uuid: 6be317fc-0317-4f02-beac-e7bd120ed1a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_client_information
+    - node.type.client
+    - node.type.commission_record
+id: node.commission_record.field_client_information
+field_name: field_client_information
+entity_type: node
+bundle: commission_record
+label: 'Client Information'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      client: client
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

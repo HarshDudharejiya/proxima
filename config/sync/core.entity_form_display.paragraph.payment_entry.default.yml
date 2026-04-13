@@ -1,0 +1,39 @@
+uuid: bc6efd4a-306f-49a8-953b-d7e349ca5b06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.payment_entry.field_date
+    - field.field.paragraph.payment_entry.field_paid
+    - field.field.paragraph.payment_entry.field_payment_amount
+    - paragraphs.paragraphs_type.payment_entry
+  module:
+    - datetime
+id: paragraph.payment_entry.default
+targetEntityType: paragraph
+bundle: payment_entry
+mode: default
+content:
+  field_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_paid:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_payment_amount:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

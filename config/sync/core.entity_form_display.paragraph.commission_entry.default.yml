@@ -1,0 +1,31 @@
+uuid: c964af66-fe76-4d40-bf4b-536ef5191ced
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.commission_entry.field_commission_amount
+    - field.field.paragraph.commission_entry.field_date
+    - paragraphs.paragraphs_type.commission_entry
+  module:
+    - datetime
+id: paragraph.commission_entry.default
+targetEntityType: paragraph
+bundle: commission_entry
+mode: default
+content:
+  field_commission_amount:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

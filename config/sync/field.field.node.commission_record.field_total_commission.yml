@@ -1,0 +1,23 @@
+uuid: 105441d1-fe45-45f8-a040-583fab97ba0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_commission
+    - node.type.commission_record
+id: node.commission_record.field_total_commission
+field_name: field_total_commission
+entity_type: node
+bundle: commission_record
+label: 'Total Commission'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

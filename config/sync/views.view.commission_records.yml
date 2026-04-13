@@ -1,19 +1,19 @@
-uuid: f6efb2d1-89c9-4fc7-8e11-9e9dccb0c325
+uuid: 32741fe8-9395-46a1-873d-c598a6168e19
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_attend_by
-    - field.storage.node.field_client_address
-    - field.storage.node.field_client_phone
-    - node.type.selection
-    - taxonomy.vocabulary.attend_by
+    - field.storage.node.field_advance_amount
+    - field.storage.node.field_client_information
+    - field.storage.node.field_commission_percentage
+    - field.storage.node.field_total_commission
+    - field.storage.node.field_total_payment
+    - node.type.commission_record
   module:
     - node
-    - taxonomy
     - user
-id: sales
-label: Sales
+id: commission_records
+label: 'Commission Records'
 module: views
 description: ''
 tag: ''
@@ -26,7 +26,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Sales
+      title: 'Commission Records'
       fields:
         title:
           id: title
@@ -38,7 +38,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: 'Client Name'
+          label: 'Architect/Mistry Name'
           exclude: false
           alter:
             alter_text: false
@@ -93,141 +93,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_client_phone:
-          id: field_client_phone
-          table: node__field_client_phone
-          field: field_client_phone
-          relationship: field_client_information
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Client Phone'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_client_address:
-          id: field_client_address
-          table: node__field_client_address
-          field: field_client_address
-          relationship: field_client_information
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Client Address'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_attend_by:
-          id: field_attend_by
-          table: node__field_attend_by
-          field: field_attend_by
+        field_client_information:
+          id: field_client_information
+          table: node__field_client_information
+          field: field_client_information
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Attend By'
+          label: 'Client Information'
           exclude: false
           alter:
             alter_text: false
@@ -282,17 +156,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        created:
-          id: created
-          table: node_field_data
-          field: created
+        field_total_payment:
+          id: field_total_payment
+          table: node__field_total_payment
+          field: field_total_payment
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: created
           plugin_id: field
-          label: Created
+          label: 'Total Payment'
           exclude: false
           alter:
             alter_text: false
@@ -334,21 +206,202 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: timestamp
+          type: number_integer
           settings:
-            date_format: olivero_medium
-            custom_date_format: ''
-            timezone: ''
-            tooltip:
-              date_format: long
-              custom_date_format: ''
-            time_diff:
-              enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
-              granularity: 2
-              refresh: 60
-              description: ''
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_advance_amount:
+          id: field_advance_amount
+          table: node__field_advance_amount
+          field: field_advance_amount
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Advance Amount'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_commission_percentage:
+          id: field_commission_percentage
+          table: node__field_commission_percentage
+          field: field_commission_percentage
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Commission Percentage'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_total_commission:
+          id: field_total_commission
+          table: node__field_total_commission
+          field: field_total_commission
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Total Commission'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -415,7 +468,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 5
+          items_per_page: 10
           total_pages: null
           id: 0
           tags:
@@ -436,10 +489,10 @@ display:
         type: basic
         options:
           submit_button: Apply
-          reset_button: true
+          reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: false
+          expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
@@ -488,7 +541,7 @@ display:
           entity_field: type
           plugin_id: bundle
           value:
-            selection: selection
+            commission_record: commission_record
         title:
           id: title
           table: node_field_data
@@ -499,7 +552,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: string
-          operator: word
+          operator: contains
           value: ''
           group: 1
           exposed: true
@@ -517,98 +570,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        field_attend_by_target_id:
-          id: field_attend_by_target_id
-          table: node__field_attend_by
-          field: field_attend_by_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_attend_by_target_id_op
-            label: 'Attend By'
-            description: ''
-            use_operator: false
-            operator: field_attend_by_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_attend_by_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: attend_by
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: created_op
-            label: 'Authored on'
-            description: ''
-            use_operator: false
-            operator: created_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: created
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            min_placeholder: ''
-            max_placeholder: ''
             placeholder: ''
           is_grouped: false
           group_info:
@@ -644,15 +605,6 @@ display:
           admin_label: 'field_client_information: Content'
           plugin_id: standard
           required: false
-        field_product:
-          id: field_product
-          table: node__field_product
-          field: field_product
-          relationship: none
-          group_type: group
-          admin_label: 'field_product: Content'
-          plugin_id: standard
-          required: false
         field_architect_mistry_informati:
           id: field_architect_mistry_informati
           table: node__field_architect_mistry_informati
@@ -662,23 +614,7 @@ display:
           admin_label: 'field_architect_mistry_informati: Content'
           plugin_id: standard
           required: false
-      css_class: sales
-      use_ajax: true
-      group_by: true
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: true
-          content:
-            value: '<a href="/node/add/selection" class="add-button">Add selection</a>'
-            format: full_html
-          tokenize: false
+      header: {  }
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -691,18 +627,28 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_attend_by'
-        - 'config:field.storage.node.field_client_address'
-        - 'config:field.storage.node.field_client_phone'
+        - 'config:field.storage.node.field_advance_amount'
+        - 'config:field.storage.node.field_client_information'
+        - 'config:field.storage.node.field_commission_percentage'
+        - 'config:field.storage.node.field_total_commission'
+        - 'config:field.storage.node.field_total_payment'
   page_1:
     id: page_1
     display_title: Page
     display_plugin: page
     position: 1
     display_options:
-      exposed_block: false
       display_extenders: {  }
-      path: sales
+      path: commission-records
+      menu:
+        type: tab
+        title: 'Commission Records'
+        description: ''
+        weight: 0
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -713,6 +659,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_attend_by'
-        - 'config:field.storage.node.field_client_address'
-        - 'config:field.storage.node.field_client_phone'
+        - 'config:field.storage.node.field_advance_amount'
+        - 'config:field.storage.node.field_client_information'
+        - 'config:field.storage.node.field_commission_percentage'
+        - 'config:field.storage.node.field_total_commission'
+        - 'config:field.storage.node.field_total_payment'
