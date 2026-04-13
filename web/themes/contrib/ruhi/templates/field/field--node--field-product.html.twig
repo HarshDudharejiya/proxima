@@ -36,23 +36,24 @@
 {% set grand_total = 0 %}
 
 {% for product in products %}
-  {% set category = product.category %}
-  {% set room = product.room %}
+  {# Safe Key Generation: Prepend prefixes to avoid array index errors #}
+  {% set cat_key = 'c-' ~ product.category %}
+  {% set room_key = 'r-' ~ product.room %}
   {% set product_total = product.total|replace({',': ''})|number_format(2, '.', '') %}
   
   {# Category totals #}
-  {% if not category_totals[category] %}
-    {% set category_totals = category_totals|merge({(category): 0}) %}
+  {% if category_totals[cat_key] is not defined %}
+    {% set category_totals = category_totals|merge({(cat_key): 0}) %}
   {% endif %}
-  {% set current_category_total = category_totals[category] + product_total %}
-  {% set category_totals = category_totals|merge({(category): current_category_total}) %}
+  {% set current_category_total = category_totals[cat_key] + product_total %}
+  {% set category_totals = category_totals|merge({(cat_key): current_category_total}) %}
   
   {# Room totals #}
-  {% if not room_totals[room] %}
-    {% set room_totals = room_totals|merge({(room): 0}) %}
+  {% if room_totals[room_key] is not defined %}
+    {% set room_totals = room_totals|merge({(room_key): 0}) %}
   {% endif %}
-  {% set current_room_total = room_totals[room] + product_total %}
-  {% set room_totals = room_totals|merge({(room): current_room_total}) %}
+  {% set current_room_total = room_totals[room_key] + product_total %}
+  {% set room_totals = room_totals|merge({(room_key): current_room_total}) %}
   
   {# Grand total #}
   {% set grand_total = grand_total + product_total %}
@@ -60,54 +61,66 @@
 
 {# Group products by category and room #}
 {% set grouped_products = {} %}
+
 {% for product in products %}
-  {% set category = product.category %}
-  {% set room = product.room %}
+  {% set cat_key = 'c-' ~ product.category %}
+  {% set room_key = 'r-' ~ product.room %}
   
-  {% if not grouped_products[category] %}
-    {% set grouped_products = grouped_products|merge({(category): {
-      'rooms': {},
-      'total': category_totals[category]|default(0)
-    }}) %}
-  {% endif %}
-  
-  {% if not grouped_products[category].rooms[room] %}
+  {# 1. Initialize Category #}
+  {% if grouped_products[cat_key] is not defined %}
     {% set grouped_products = grouped_products|merge({
-      (category): grouped_products[category]|merge({
-        'rooms': grouped_products[category].rooms|merge({
-          (room): {
-            'products': [],
-            'total': room_totals[room]|default(0)
-          }
-        })
-      })
+      (cat_key): {
+        'name': product.category,
+        'rooms': {},
+        'total': category_totals[cat_key]|default(0)
+      }
     }) %}
   {% endif %}
   
-  {% set current_room = grouped_products[category].rooms[room] %}
-  {% set current_products = current_room.products|merge([product]) %}
-  {% set grouped_products = grouped_products|merge({
-    (category): grouped_products[category]|merge({
-      'rooms': grouped_products[category].rooms|merge({
-        (room): current_room|merge({'products': current_products})
-      })
-    })
-  }) %}
+  {# 2. Get current category data #}
+  {% set current_cat = grouped_products[cat_key] %}
+  
+  {# 3. Initialize Room #}
+  {% if current_cat.rooms[room_key] is not defined %}
+    {% set current_rooms = current_cat.rooms|merge({
+      (room_key): {
+        'name': product.room,
+        'products': [],
+        'total': room_totals[room_key]|default(0)
+      }
+    }) %}
+    {% set current_cat = current_cat|merge({'rooms': current_rooms}) %}
+  {% endif %}
+  
+  {# 4. Add product to Room #}
+  {% set current_rooms = current_cat.rooms %}
+  {% set current_room_data = current_rooms[room_key] %}
+  
+  {% set current_room_products = current_room_data.products|merge([product]) %}
+  
+  {# Rebuild nested structure #}
+  {% set current_room_data = current_room_data|merge({'products': current_room_products}) %}
+  {% set current_rooms = current_rooms|merge({(room_key): current_room_data}) %}
+  {% set current_cat = current_cat|merge({'rooms': current_rooms}) %}
+  
+  {# Save back to main array #}
+  {% set grouped_products = grouped_products|merge({(cat_key): current_cat}) %}
+
 {% endfor %}
 
 {# Render grouped products #}
 <div class="products-by-category">
   <h2><i class="icon-list color-primary"></i> Products by Category</h2>
   
-  {% for category, category_data in grouped_products %}
+  {% for cat_key, category_data in grouped_products %}
     <div class="category-group">
       <h3 class="category-title">
-        <i class="icon-folder color-primary"></i> {{ category }}
+        <i class="icon-folder color-primary"></i> {{ category_data.name }}
         <span class="category-total">({{ category_data.total|number_format(2) }})</span>
       </h3>
       
       {% set category_item_count = 0 %}
-      {% for room, room_data in category_data.rooms %}
+      {% for room_key, room_data in category_data.rooms %}
         {% set category_item_count = category_item_count + room_data.products|length %}
       {% endfor %}
       
@@ -118,10 +131,10 @@
         </span>
       </p>
       
-      {% for room, room_data in category_data.rooms %}
+      {% for room_key, room_data in category_data.rooms %}
         <div class="room-group">
           <h4 class="room-title">
-            <i class="icon-home"></i> Room: {{ room }}
+            <i class="icon-home"></i> Room: {{ room_data.name }}
             <span class="room-total">({{ room_data.total|number_format(2) }})</span>
           </h4>
         </div>
@@ -190,9 +203,9 @@
   <div class="products-total-summary">
     <h3><i class="icon-dollar-sign"></i> Order Summary</h3>
     
-    {% for category, category_data in grouped_products %}
+    {% for cat_key, category_data in grouped_products %}
       <div class="total-summary-item">
-        <span class="total-label">{{ category }} Total:</span>
+        <span class="total-label">{{ category_data.name }} Total:</span>
         <span class="price total">{{ category_data.total|number_format(2) }}</span>
       </div>
     {% endfor %}

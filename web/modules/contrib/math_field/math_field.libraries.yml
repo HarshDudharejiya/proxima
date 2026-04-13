@@ -1,4 +1,0 @@
-animate_expression:
-  css:
-    component:
-      css/math_field.animate.css: {}

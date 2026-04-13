@@ -1,4 +1,0 @@
-services:
-  math_field.calculator:
-    class: Drupal\math_field\Calculator
-    arguments: []

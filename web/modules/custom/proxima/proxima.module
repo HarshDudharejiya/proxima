@@ -1,4 +1,10 @@
 <?php
+
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+
 /**
  * Implements hook_form_alter().
  */
@@ -6,8 +12,7 @@ function proxima_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_s
   // Check specifically for your node form ID
 //   dump($form);die;
   if ($form_id == 'node_selection_form' || $form_id == 'node_selection_edit_form') {
-    
-    // Attach the JS library
+    $form['title']['widget'][0]['value']['#required'] = FALSE;    // Attach the JS library
     $form['#attached']['library'][] = 'proxima/product_calculator';
     // Optional: Make the Total field Read-only via PHP as well
     // Note: Because it's an Inline Entity Form, deep targeting might be tricky in PHP,
@@ -33,3 +38,38 @@ function proxima_inline_entity_form_table_fields_alter(&$fields, $context) {
     ];
   }
 }
+
+
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
+ */
+function proxima_node_presave(EntityInterface $entity) {
+  // Only process 'selection' content type
+  if ($entity->bundle() !== 'selection') {
+    return;
+  }
+
+  // Get the client information field
+  if ($entity->hasField('field_client_information') && !$entity->get('field_client_information')->isEmpty()) {
+    $client_info = $entity->get('field_client_information')->referencedEntities();
+    
+    if (!empty($client_info)) {
+      $first_client = reset($client_info);
+      $client_name = $first_client->label();
+      
+      // Set the title to client name if not already set or if it's a date fallback
+      $current_title = $entity->getTitle();
+      if (empty($current_title) || strpos($current_title, 'Selection -') === 0) {
+        $entity->setTitle($client_name);
+      }
+    }
+  }
+  
+  // Fallback: if still no title, use date
+  if (empty($entity->getTitle())) {
+    $entity->setTitle('Selection - ' . date('m/d/Y'));
+  }
+}
+
+
