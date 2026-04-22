@@ -3,31 +3,35 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.architect_mistry.body
     - field.field.node.architect_mistry.field_architect_mistry
     - field.field.node.architect_mistry.field_architect_mistry_location
     - node.type.architect_mistry
   module:
     - path
+    - text
 id: node.architect_mistry.default
 targetEntityType: node
 bundle: architect_mistry
 mode: default
 content:
+  body:
+    type: text_textarea_with_summary
+    weight: 1
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_architect_mistry:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_architect_mistry_location:
     type: string_textfield
     weight: 2
     region: content
@@ -35,15 +39,23 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_architect_mistry_location:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   path:
     type: path
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -58,7 +70,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
